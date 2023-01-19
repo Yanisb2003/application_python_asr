@@ -1,0 +1,28 @@
+version: "3"
+
+services:
+  app:
+    build: ./
+    command: python app.py
+    ports:
+      - "5000:5000"
+
+  redis:
+    image: redis:alpine
+    ports: ["6379"]
+
+  db:
+    image: mysql:latest
+    hostname: db
+    environment:
+      MYSQL_USER: test
+      MYSQL_PASSWORD: test
+      MYSQL_DATABASE: test
+      MYSQL_ROOT_PASSWORD: password
+    volumes: 
+      - mysql:/var/lib/mysql
+      - "./sql/init.sql:/docker-entrypoint-initdb.d/init.sql"
+      
+     
+volumes:
+  mysql:
