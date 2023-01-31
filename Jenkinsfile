@@ -40,7 +40,6 @@ pipeline {
 //       }
 //     }
 
-
         stage('Connect to Ansible Server') {
             steps {
                 sshPublisher(
@@ -51,14 +50,10 @@ pipeline {
                             execTimeout: 300,
                             usePty: false
                         )
-                        // sshTransfer(
-                        //     execCommand: 'ansible-playbook -i /opt/docker/hosts.ini /opt/docker/ansible-playbook-remote.yml',
-                        //     execTimeout: 300,
-                        //     usePty: false
-                        // )
                     ]
                 )
             }
         }
+        
     }
 }
