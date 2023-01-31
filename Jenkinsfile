@@ -46,11 +46,13 @@ pipeline {
                     publishers: [
                         sshPublisherDesc(
                             configName: 'AnsibleServer',
-                            sshTransfer(
-                                execCommand: 'touch /opt/docker/test.txt',
-                                execTimeout: 300,
-                                usePty: false
-                            )
+                            transferSet: [
+                                sshTransfer(
+                                    execCommand: 'touch /opt/docker/test.txt',
+                                    execTimeout: 300,
+                                    usePty: false
+                                )
+                            ]
                         )
                     ]
                 )
