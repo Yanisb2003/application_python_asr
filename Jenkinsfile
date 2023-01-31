@@ -1,18 +1,20 @@
 pipeline {
     agent any
     stages {
-        stage('Connect to Ansible Server') {
+        stage('Deploy') {
             steps {
                 sshPublisher(
-                    configName: 'AnsibleServer',
-                    transferSet: [
-                        sshTransfer(
-                            execCommand: 'touch /opt/docker/test.txt',
-                            execTimeout: 300
+                    continueOnError: false, 
+                    failOnError: true,
+                    publishers: [
+                        sshPublisherDesc(
+                        configName: "AnsibleServet",
+                        transfers: [sshTransfer(execCommand: 'touche /opt/docker/test.txt')],
+                        verbose: true
                         )
                     ]
                 )
             }
-        }
+        }       
     }
 }
