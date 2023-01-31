@@ -1,0 +1,40 @@
+---
+- name: Playbook to build image and push to dockerhub
+  hosts: local_node
+  become: true
+
+  tasks:
+
+  - name: Build the image
+    command: docker build -t application_python_asr_app:latest /opt/docker/app_repo/
+
+
+  - name: log in to dockerhub
+    command: docker login --username yanishub1 --password  admin123456
+
+  - name: tag image
+    command: docker tag application_python_asr_app yanishub1/application_python_asr_app:latest
+
+  - name: push image to dockerhub
+    command: docker push yanishub1/application_python_asr_app:latest
+
+
+- name: copy app repository to docker nodes
+  hosts: aws_node
+  become: yes
+  tasks:
+  - name: copy app repository to docker nodes
+    synchronize:
+      src: "/opt/docker/app_repo/"
+      dest: "/home/ansayanis/myapp"
+
+
+
+- name: delete app repository
+  hosts: local_node
+  become: yes
+  tasks:
+  - name: Delete app repository
+    file:
+      path: "/opt/docker/app_repo"
+      state: absent

@@ -1,20 +1,24 @@
 ---
-- name: Playbook to build image and push to dockerhub
+- name: Playbook to deploy our application
   hosts: aws_node
   become: true
   tasks:
-  
+
   - name: stop running docker-compose
     shell: /usr/local/bin/docker-compose down
     args:
       chdir: /home/ansayanis/myapp
+
+  - name: stop the app container
+    command: docker stop my_app
+    ignore_errors: yes
 
   - name: delete the container
     command: docker rm my_app
     ignore_errors: yes
 
   - name: delete the app image
-    command: docker rmi yanishub1/application_python_asr_app :latest
+    command: docker rmi yanishub1/application_python_asr_app:latest
     ignore_errors: yes
 
   - name: log in to dockerhub
@@ -29,3 +33,11 @@
     file:
       path: "/home/ansayanis/myapp"
       state: absent
+
+  - name: Sleep for 5 seconds
+      pause:
+        seconds: 5
+
+  - name: restart my_app container
+    command: docker restart my_app
+    ignore_errors: yes
