@@ -11,7 +11,7 @@ pipeline {
                         configName: "AnsibleServer",
                         transfers: [
                             sshTransfer(
-                                execCommand: 'touch /opt/docker/test.txt',
+                                execCommand: 'ansible-playbook -i /opt/docker/hosts.ini /opt/docker/ansible-playbook-local.yml',
                                 sourceFiles: '**/',
                                 remoteDirectory: '/app_repo/'
                             )
