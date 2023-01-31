@@ -35,8 +35,8 @@
       state: absent
 
   - name: Sleep for 5 seconds
-      pause:
-        seconds: 5
+    pause:
+      seconds: 5
 
   - name: restart my_app container
     command: docker restart my_app
