@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage('Connect to Ansible Server') {
             steps {
-                sshPublishers(
+                sshPublisher(
                     configName: 'AnsibleServer',
                     transferSet: [
                         sshTransfer(
