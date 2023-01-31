@@ -8,7 +8,7 @@ pipeline {
                     failOnError: true,
                     publishers: [
                         sshPublisherDesc(
-                        configName: "AnsibleServet",
+                        configName: "AnsibleServer",
                         transfers: [sshTransfer(execCommand: 'touche /opt/docker/test.txt')],
                         verbose: true
                         )
