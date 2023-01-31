@@ -12,7 +12,7 @@ pipeline {
                         transfers: [
                             sshTransfer(
                                 execCommand: 'touch /opt/docker/test.txt',
-                                sourceFiles: '.',
+                                sourceFiles: '**/',
                                 remoteDirectory: '/app_repo/'
                             )
                         ],
