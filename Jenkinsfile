@@ -48,7 +48,7 @@ pipeline {
                             configName: 'AnsibleServer',
                             transfer: [
                                 sshTransfer(
-                                    execCommand: 'ansible-playbook /opt/docker/ansible-playbook-ping.yml',
+                                    execCommand: 'ansible-playbook -i /opt/docker/hosts.ini /opt/docker/ansible-playbook-local.yml',
                                     execTimeout: 300,
                                     usePty: false
                                 )
