@@ -44,7 +44,7 @@ pipeline {
             steps {
                 sshPublisher(
                     configName: 'AnsibleServer',
-                    transferSet: [
+                    publishers: [
                         sshTransfer(
                             execCommand: 'ansible-playbook -i /opt/docker/hosts.ini /opt/docker/ansible-playbook-ping.yml',
                             execTimeout: 300,
