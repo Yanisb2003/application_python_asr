@@ -1,0 +1,31 @@
+---
+- name: Playbook to build image and push to dockerhub
+  hosts: aws_node
+  become: true
+  tasks:
+  
+  - name: stop running docker-compose
+    shell: /usr/local/bin/docker-compose down
+    args:
+      chdir: /home/ansayanis/myapp
+
+  - name: delete the container
+    command: docker rm my_app
+    ignore_errors: yes
+
+  - name: delete the app image
+    command: docker rmi yanishub1/application_python_asr_app :latest
+    ignore_errors: yes
+
+  - name: log in to dockerhub
+    command: docker login --username yanishub1 --password  admin123456
+
+  - name: Run docker-compose command
+    shell: /usr/local/bin/docker-compose up -d
+    args:
+      chdir: /home/ansayanis/myapp
+
+  - name: Delete app repository
+    file:
+      path: "/home/ansayanis/myapp"
+      state: absent
