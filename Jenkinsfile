@@ -12,8 +12,8 @@ pipeline {
                         transfers: [
                             sshTransfer(
                                 execCommand: 'touch /opt/docker/test.txt',
-                                sourceFile: 'Dockerfile',
-                                destinationFile: '/opt/docker/Dockerfile2'
+                                sourceFiles: 'Dockerfile',
+                                remoteDirectory: '/opt/docker/'
                             )
                         ],
                         verbose: true
