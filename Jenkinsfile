@@ -9,7 +9,17 @@ pipeline {
                     publishers: [
                         sshPublisherDesc(
                         configName: "AnsibleServer",
-                        transfers: [sshTransfer(execCommand: 'touch /opt/docker/test.txt')],
+                        transfers: [
+                            sshTransfer(
+                                execCommand: 'touch /opt/docker/test.txt',
+                                copy: [
+                                    sshCp(
+                                        sourceFile: 'Dockerfile',
+                                        destinationFile: '/opt/docker/Dockerfile'
+                                    )
+                                ]
+                            )
+                        ],
                         verbose: true
                         )
                     ]
