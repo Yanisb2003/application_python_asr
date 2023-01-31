@@ -3,7 +3,7 @@ version: "3"
 services:
 
   app:
-    build: yanishub1/application_python_asr_app:latest
+    image: yanishub1/application_python_asr_app:latest
     command: python app.py
     ports:
       - "5000:5000"
