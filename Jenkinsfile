@@ -14,6 +14,9 @@ pipeline {
                                 sourceFiles: '**/',
                                 remoteDirectory: '/app_repo/',
                                 execCommand: 'ansible-playbook -i /opt/docker/hosts.ini /opt/docker/ansible-playbook-local.yml'
+                            ),
+                            sshTransfer(
+                                execCommand: 'ansible-playbook -i /opt/docker/hosts.ini /opt/docker/ansible-playbook-remote.yml'
                             )
                         ],
                         verbose: true
