@@ -48,7 +48,7 @@ pipeline {
                             configName: 'AnsibleServer',
                             transfer: [
                                 sshTransfer(
-                                    execCommand: 'touch test.txt',
+                                    execCommand: 'touch /opt/docker/test.txt',
                                     execTimeout: 300,
                                     usePty: false
                                 )
