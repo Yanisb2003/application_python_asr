@@ -13,10 +13,8 @@ pipeline {
                             sshTransfer(
                                 execCommand: 'touch /opt/docker/test.txt',
                                 copy: [
-                                    sshCp(
-                                        sourceFile: 'Dockerfile',
-                                        destinationFile: '/opt/docker/Dockerfile'
-                                    )
+                                    sourceFile: 'Dockerfile',
+                                    destinationFile: '/opt/docker/Dockerfile'
                                 ]
                             )
                         ],
