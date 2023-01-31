@@ -14,7 +14,7 @@ pipeline {
                                 execCommand: 'touch /opt/docker/test.txt',
                                 copy: [
                                     sourceFile: 'Dockerfile',
-                                    destinationFile: '/opt/docker/Dockerfile'
+                                    destinationFile: '/opt/docker/Dockerfile2'
                                 ]
                             )
                         ],
