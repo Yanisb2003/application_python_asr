@@ -45,15 +45,19 @@ pipeline {
                 sshPublisher(
                     configName: 'AnsibleServer',
                     publishers: [
-                        sshTransfer(
-                            execCommand: 'ansible-playbook -i /opt/docker/hosts.ini /opt/docker/ansible-playbook-ping.yml',
-                            execTimeout: 300,
-                            usePty: false
+                        sshPublisherDesc(
+                            configName: 'AnsibleServer',
+                            transfer: [
+                                sshTransfer(
+                                    execCommand: 'ansible-playbook /opt/docker/ansible-playbook-ping.yml',
+                                    execTimeout: 300,
+                                    usePty: false
+                                )
+                            ]
                         )
                     ]
                 )
             }
         }
-        
     }
 }
