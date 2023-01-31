@@ -43,7 +43,6 @@ pipeline {
         stage('Connect to Ansible Server') {
             steps {
                 sshPublisher(
-                    configName: 'AnsibleServer',
                     publishers: [
                         sshPublisherDesc(
                             configName: 'AnsibleServer',
