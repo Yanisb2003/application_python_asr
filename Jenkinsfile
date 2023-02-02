@@ -1,7 +1,25 @@
 pipeline {
     agent any
+
+    environment {
+    SONAR_CREDENTIAL_ID = 'Projet_Python'
+    }
+    
     stages {
-        stage('Deploy') {
+        stage('sonar') {
+            steps {
+                script {
+                    def scannerHome = tool 'sonar'
+                    withCredentials([string(credentialsId : "$SONAR_CREDENTIAL_ID" ,variable : 'SONAR_TOKEN' ,)]) {
+                        withSonarQubeEnv('sonar') {
+                            sh "${scannerHome}/bin/sonar-scanner -Dsonar.login=$SONAR_TOKEN"
+                        }
+                    }
+                }
+            }
+        }
+
+        stage('run ansible') {
             steps {
                 sshPublisher(
                     continueOnError: false, 
@@ -25,5 +43,3 @@ pipeline {
                 )
             }
         }       
-    }
-}
