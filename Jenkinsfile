@@ -9,9 +9,9 @@ pipeline {
         stage('sonar') {
             steps {
                 script {
-                    def scannerHome = tool 'sonar'
+                    def scannerHome = tool 'sonar_python'
                     withCredentials([string(credentialsId : "$SONAR_CREDENTIAL_ID" ,variable : 'SONAR_TOKEN' ,)]) {
-                        withSonarQubeEnv('sonar') {
+                        withSonarQubeEnv('sonar_python') {
                             sh "${scannerHome}/bin/sonar-scanner -Dsonar.login=$SONAR_TOKEN"
                         }
                     }
