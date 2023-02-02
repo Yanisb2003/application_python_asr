@@ -1,8 +1,15 @@
 from flask import Flask, request
 import redis
 import mysql.connector
+from prometheus_flask_exporter import PrometheusMetrics
+
+
 
 app = Flask(__name__)
+
+metrics = PrometheusMetrics(app)
+# static information as metric
+metrics.info('app_info', 'Application info', version='1.0.3')
 
 # Connect to Redis database
 redis_db = redis.Redis(host="redis", port=6379)
