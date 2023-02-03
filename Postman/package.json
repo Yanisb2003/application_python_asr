@@ -3,6 +3,6 @@
         "newman": "^5.3.2"
     },
     "scripts": {
-        "testapilocal": "newman run Projet_Python.postman_collection.json  -r json --reporter-json-export result-tests-local.json",
+        "testapilocal": "newman run Projet_Python.postman_collection.json  -r json --reporter-json-export result-tests-local.json"
     }
 }
