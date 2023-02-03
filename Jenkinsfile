@@ -46,9 +46,9 @@ pipeline {
 
         stage('run Test newman') {
            steps {
-              sh 'npm i -g newman'
+              sh 'sudo npm i -g newman'
               sh 'cd postman'
-              sh 'npm run testapilocal'
+              sh 'sudo npm run testapilocal'
            }
         }
 
