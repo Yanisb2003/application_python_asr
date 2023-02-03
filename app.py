@@ -62,5 +62,10 @@ def add_message():
 
     return "Message sent!"
 
+@app.route("/test", methods=["GET"])
+def test():
+    if request.method == "GET":
+        return "response: Welcome to Falsk application"
+
 if __name__ == "__main__":
     app.run(host='0.0.0.0')
