@@ -44,13 +44,17 @@ pipeline {
             }
         }
 
-        stage('run Test newman') {
-           steps {
-              sh 'sudo npm i -g newman'
-              sh 'cd postman'
-              sh 'sudo npm run testapilocal'
-           }
+        stage('Install dependencies') {
+            steps {
+                sh 'npm install'
+             }
         }
+     
+        stage('Test') {
+            steps {
+                sh 'npm test'
+             }
+        } 
 
     }
 }
