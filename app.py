@@ -35,7 +35,7 @@ def index():
     return f"""
         <html>
             <body>
-                <h1>Tu est le visiteur n°  {visits}.</h1>
+                <h1>Vous êtes le visiteur n°  {visits}.</h1>
                 <p> Dernier messages :</p>
                 <ul>
                     {
